@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Reflection;
 
 public class HelloWorld
 {
@@ -31,9 +33,10 @@ public class HelloWorld
                 Console.WriteLine("Day: " + nimiLaskin);
                 string day = "Day: " + nimiLaskin;
 
-                string createText = day + Environment.NewLine + ydin; //
-                string filePath = @"C:\Users\Arttu V\source\repos\Päiväkirja\Days\" + nimiLaskin + ".txt";
-                File.WriteAllText(filePath, createText);
+                string createText = day + Environment.NewLine + ydin;
+                string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Days");
+                string fileName = "day" + nimiLaskin + ".txt";
+                string filePath = Path.Combine(folderPath, fileName);
 
                 Console.WriteLine($"Teksti on tallennettu tiedostoon: {filePath}");
                 Console.WriteLine("Any: Poistu");
@@ -53,7 +56,7 @@ public class HelloWorld
                 {
                     Console.WriteLine("Päivän numero");
                     string tiedostonNumero = Console.ReadLine();
-                    string filePath = @"C:\Users\Arttu V\source\repos\Päiväkirja\Days\" + tiedostonNumero + ".txt";
+                    string filePath = Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\source\repos\Päiväkirja\Days\") + nimiLaskin + ".txt";
 
                     if (File.Exists(filePath))
                     {
@@ -73,7 +76,7 @@ public class HelloWorld
                 {
                     Console.WriteLine("Anna poistettavan tiedoston numero:");
                     string tiedostonNumero = Console.ReadLine();
-                    string filePath = @"C:\Users\Arttu V\source\repos\Päiväkirja\Days\" + tiedostonNumero + ".txt";
+                    string filePath = Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\source\repos\Päiväkirja\Days\") + nimiLaskin + ".txt";
 
                     if (File.Exists(filePath))
                     {
@@ -100,7 +103,7 @@ public class HelloWorld
             {
                 Console.WriteLine("Päivän numero");
                 string tiedostonNumero = Console.ReadLine();
-                string filePath = @"C:\Users\Arttu V\source\repos\Päiväkirja\Days\" + tiedostonNumero + ".txt";
+                string filePath = Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\source\repos\Päiväkirja\Days\") + nimiLaskin + ".txt";
 
                 if (File.Exists(filePath))
                 {
